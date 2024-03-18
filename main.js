@@ -22,7 +22,7 @@ function createBoard(size) {
   for (let i = 0; i < numDivs; i++) {
     let div = document.createElement("div");
     //div.style.backgroundColor = "yellow";
-    div.addEventListener("mouseover", colorDiv());
+    div.addEventListener("mouseover", colorDiv);
     board.insertAdjacentElement("beforeend", div);
   }
 }
@@ -40,8 +40,19 @@ function getSize() {
   }
 }
 
-function colorDiv() {}
+function colorDiv() {
+  if (color == "random") {
+    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  } else {
+    this.style.backgroundColor = "black";
+  }
+}
 
 function setColor(colorChoice) {
-  let color = colorChoice;
+  color = colorChoice;
+}
+
+function resetBoard() {
+  let divs = document.querySelectorAll("div");
+  divs.forEach((div) => (div.style.backgroundColor = "white"));
 }
